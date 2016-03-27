@@ -63,7 +63,7 @@ class Navbar extends React.Component {
             <span className='icon-bar'></span>
             <span className='icon-bar'></span>
           </button>
-          <Link to '/' className='navbar-brand'>
+          <Link to='/' className='navbar-brand'>
             <span ref='triangle' className={'triangles animated ' + this.state.ajaxAnimationClass}>
               <div className='tri invert'></div>
               <div className='tri invert'></div>
@@ -136,7 +136,7 @@ class Navbar extends React.Component {
               <ul className='dropdown-menu'>
                 <li><Link to='/female'>All</Link></li>
                 <li className='dropdown-submenu'>
-                  <Link to'/female/caldari'>Caldari</Link>
+                  <Link to='/female/caldari'>Caldari</Link>
                   <ul className='dropdown-menu'>
                     <li><Link to='/female/caldari/achura'>Achura</Link></li>
                     <li><Link to='/female/caldari/civire'>Civire</Link></li>
@@ -177,7 +177,7 @@ class Navbar extends React.Component {
                   <Link to='/male/caldari'>Caldari</Link>
                   <ul className='dropdown-menu'>
                     <li><Link to='/male/caldari/achura'>Achura</Link></li>
-                    <li><Link to='/male/caldari/civire'>Civire>/Link></li>
+                    <li><Link to='/male/caldari/civire'>Civire</Link></li>
                     <li><Link to='/male/caldari/deteis'>Deteis</Link></li>
                   </ul>
                 </li>
@@ -195,7 +195,7 @@ class Navbar extends React.Component {
                     <li><Link to='/male/minmatar/brutor'>Brutor</Link></li>
                     <li><Link to='/male/minmatar/sebiestor'>Sebiestor</Link></li>
                     <li><Link to='/male/minmatar/vherokior'>Vherokior</Link></li>
-                  <ul>
+                  </ul>
                 </li>
                 <li className='dropdown-submenu'>
                   <Link to='/male/amarr'>Amarr</Link>
