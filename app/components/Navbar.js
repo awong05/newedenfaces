@@ -143,11 +143,71 @@ class Navbar extends React.Component {
                     <li><Link to='/female/caldari/deteis'>Deteis</Link></li>
                   </ul>
                 </li>
-                
+                <li className='dropdown-submenu'>
+                  <Link to='/female/gallente'>Gallente</Link>
+                  <ul className='dropdown-menu'>
+                    <li><Link to='/female/gallente/gallente'>Gallente</Link></li>
+                    <li><Link to='/female/gallente/intaki'>Intaki</Link></li>
+                    <li><Link to='/female/gallente/jin-mei'>Jin-Mei</Link></li>
+                  </ul>
+                </li>
+                <li className='dropdown-submenu'>
+                  <Link to='/female/minmatar'>Minmatar</Link>
+                  <ul className='/dropdown-menu'>
+                    <li><Link to='/female/minmatar/brutor'>Brutor</Link></li>
+                    <li><Link to='/female/minmatar/sebiestor'>Sebiestor</Link></li>
+                    <li><Link to='/female/minmatar/vherokior'>Vherokior</Link></li>
+                  </ul>
+                </li>
+                <li className='dropdown-submenu'>
+                  <Link to='/female/amarr'>Amarr</Link>
+                  <ul className='dropdown-menu'>
+                    <li><Link to='/female/amarr/amarr'>Amarr</Link></li>
+                    <li><Link to='/female/amarr/ni-kunni'>Ni-Kunni</Link></li>
+                    <li><Link to='/female/amarr/khanid'>Khanid</Link></li>
+                  </ul>
+                </li>
               </ul>
             </li>
             <li className='dropdown'>
+              <a href='#' className='dropdown-toggle' data-toggle='dropdown'>Male <span className='caret'></span></a>
+              <ul className='dropdown-menu'>
+                <li><Link to='/male'>All</Link></li>
+                <li className='dropdown-submenu'>
+                  <Link to='/male/caldari'>Caldari</Link>
+                  <ul className='dropdown-menu'>
+                    <li><Link to='/male/caldari/achura'>Achura</Link></li>
+                    <li><Link to='/male/caldari/civire'>Civire>/Link></li>
+                    <li><Link to='/male/caldari/deteis'>Deteis</Link></li>
+                  </ul>
+                </li>
+                <li className='dropdown-submenu'>
+                  <Link to='/male/gallente'>Gallente</Link>
+                  <ul className='dropdown-menu'>
+                    <li><Link to='/male/gallente/gallente'>Gallente</Link></li>
+                    <li><Link to='/male/gallente/intaki'>Intaki</Link></li>
+                    <li><Link to='/male/gallente/jin-mei'>Jin-Mei</Link></li>
+                  </ul>
+                </li>
+                <li className='dropdown-submenu'>
+                  <Link to='/male/minmatar'>Minmatar</Link>
+                  <ul className='dropdown-menu'>
+                    <li><Link to='/male/minmatar/brutor'>Brutor</Link></li>
+                    <li><Link to='/male/minmatar/sebiestor'>Sebiestor</Link></li>
+                    <li><Link to='/male/minmatar/vherokior'>Vherokior</Link></li>
+                  <ul>
+                </li>
+                <li className='dropdown-submenu'>
+                  <Link to='/male/amarr'>Amarr</Link>
+                  <ul className='dropdown-menu'>
+                    <li><Link to='/male/amarr/amarr'>Amarr</Link></li>
+                    <li><Link to='/male/amarr/ni-kunni'>Ni-Kunni</Link></li>
+                    <li><Link to='/male/amarr/khanid'>Khanid</Link></li>
+                  </ul>
+                </li>
+              </ul>
             </li>
+            <li><Link to='/add'>Add</Link></li>
           </ul>
         </div>
       </nav>
