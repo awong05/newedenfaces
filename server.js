@@ -213,6 +213,76 @@ app.use(function(req, res) {
   });
 });
 
+app.get('/api/characters/count', function(req, res, next) {
+  Character.count({}, function(err, count) {
+    if (err) return next(err);
+    res.send({ count: count });
+  });
+});
+
+app.get('/api/characters/search', function(req, res, next) {
+  var characterName = new RegExp(req.query.name, 'i');
+
+  Character.findOne({ name: characterName }, function(err, character) {
+    if (err) return next(err);
+
+    if (!character) {
+      return res.status(404).send({ message: 'Character not found.' });
+    }
+
+    res.send(character);
+  });
+});
+
+app.get('/api/characters/top', function(req, res, next) {
+  var params = req.query;
+  var conditions = {};
+
+  _.each(params, function(value, key) {
+    conditions[key] = new RegExp('^' + value + "$", 'i');
+  });
+
+  Character
+    .find(conditions)
+    .sort('-wins')
+    .limit(100)
+    .exec(function(err, characters) {
+      if (err) return next(err);
+
+      characters.sort(function(a, b) {
+        if (a.wins / (a.wins + a.losses) < b.wins / (b.wins + b.losses)) { return 1; }
+        if (a.wins / (a.wins + a.losses) > b.wins / (b.wins + b.losses)) { return -1; }
+      });
+
+      res.send(characters);
+    });
+});
+
+app.get('/api/characters/shame', function(req, res, next) {
+  Character
+    .find()
+    .sort('-losses')
+    .limit(100)
+    .exec(function(err, characters) {
+      if (err) return next(err);
+      res.send(characters);
+    });
+});
+
+app.get('/api/characters/:id', function(req, res, next) {
+  var id = req.params.id;
+
+  Character.findOne({ characterId: id }, function(err, character) {
+    if (err) return next(err);
+
+    if (!character) {
+      return res.status(404).send({ message: 'Character not found.' });
+    }
+
+    res.send(character);
+  });
+});
+
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var onlineUsers = 0;
