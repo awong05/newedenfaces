@@ -25,7 +25,7 @@ var dependencies = [
 ];
 
 gulp.task('vendor', function() {
-  return gulp.src({
+  return gulp.src([
     'bower_components/jquery/dist/jquery.js',
     'bower_components/bootstrap/dist/js/bootstrap.js',
     'bower_components/magnific-popup/dist/jquery.manific-popup.js',
