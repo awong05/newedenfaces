@@ -8,6 +8,7 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var _ = require('underscore');
 
 var swig = require('swig');
 var React = require('react');
@@ -95,6 +96,43 @@ app.post('/api/characters', function(req, res, next) {
       });
     }
   ]);
+});
+
+app.get('/api/characters', function(req, res, next) {
+  var choices = ['Female', 'Male'];
+  var randomGender = _.sample(choices);
+
+  Character.find({ random: { $near: [Math.random(), 0] } })
+    .where('voted', false)
+    .where('gender', randomGender)
+    .limit(2)
+    .exec(function(err, characters) {
+      if (err) return next(err);
+
+      if (characters.length === 2) {
+        return res.send(characters);
+      }
+
+      var oppositeGender = _.first(_.without(choices, randomGender));
+
+      Character
+        .find({ random: { $near: [Math.random(), 0] } })
+        .where('voted', false)
+        .where('gender', oppositeGender)
+        .limit(2)
+        .exec(function(err, characters) {
+          if (err) return next(err);
+
+          if (characters.length === 2) {
+            return res.send(characters);
+          }
+
+          Character.update({}, { $set: { voted: false } }, { multi: true }, function(err) {
+            if (err) return next(err);
+            res.send([]);
+          });
+        });
+    });
 });
 
 app.use(function(req, res) {
