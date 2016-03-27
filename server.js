@@ -1,15 +1,15 @@
 require ('babel-register');
 
+var express = require('express');
+var path = require('path');
+var logger = require('morgan');
+var bodyParser = require('body-parser');
+
 var swig = require('swig');
 var React = require('react');
 var ReactDOM = require('react-dom/server');
 var Router = require('react-router');
 var routes = require('./app/routes');
-
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var bodyParser = require('body-parser');
 
 var app = express();
 
@@ -35,6 +35,21 @@ app.use(function(req, res) {
   });
 });
 
-app.listen(app.get('port'), function() {
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+var onlineUsers = 0;
+
+io.sockets.on('connection', function(socket) {
+  onlineUsers++;
+
+  io.sockets.emit('onlineUsers', { onlineUsers: onlineUsers });
+
+  socket.on('disconnect', function() {
+    onlineUsers--;
+    io.sockets.emit('onlineUsers', { onlineUsers: onlineUsers });
+  });
+});
+
+server.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + app.get('port'));
 });

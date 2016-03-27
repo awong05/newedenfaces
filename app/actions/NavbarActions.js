@@ -4,7 +4,7 @@ import {assign} from 'underscore';
 class NavbarActions {
   constructor() {
     this.generateActions(
-      'udpateOnlineUsers',
+      'updateOnlineUsers',
       'updateAjaxAnimation',
       'updateSearchQuery',
       'getCharacterCountSuccess',
